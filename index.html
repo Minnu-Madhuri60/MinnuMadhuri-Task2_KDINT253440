@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Grade Management System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f9;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .container {
+            background: white;
+            width: 400px;
+            margin: auto;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px gray;
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        input {
+            width: 90%;
+            padding: 8px;
+            margin: 8px 0;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .result {
+            margin-top: 15px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Student Grade Management</h2>
+
+        <input type="text" id="name" placeholder="Enter Student Name"><br>
+
+        <input type="number" id="sub1" placeholder="Enter Subject 1 Marks"><br>
+        <input type="number" id="sub2" placeholder="Enter Subject 2 Marks"><br>
+        <input type="number" id="sub3" placeholder="Enter Subject 3 Marks"><br>
+
+        <button onclick="calculateGrade()">Generate Report</button>
+
+        <div class="result" id="output"></div>
+    </div>
+
+    <script>
+        function calculateGrade() {
+            var name = document.getElementById("name").value;
+            var m1 = parseFloat(document.getElementById("sub1").value);
+            var m2 = parseFloat(document.getElementById("sub2").value);
+            var m3 = parseFloat(document.getElementById("sub3").value);
+
+            if (name === "" || isNaN(m1) || isNaN(m2) || isNaN(m3)) {
+                document.getElementById("output").innerHTML = 
+                    "Please enter all details correctly!";
+                return;
+            }
+
+            var average = (m1 + m2 + m3) / 3;
+            var grade;
+
+            if (average >= 80) {
+                grade = "A";
+            } else if (average >= 60) {
+                grade = "B";
+            } else if (average >= 40) {
+                grade = "C";
+            } else {
+                grade = "Fail";
+            }
+
+            document.getElementById("output").innerHTML =
+                "----- Student Report ----- <br>" +
+                "Name: " + name + "<br>" +
+                "Average: " + average.toFixed(2) + "<br>" +
+                "Grade: " + grade;
+        }
+    </script>
+
+</body>
+</html>
